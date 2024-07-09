@@ -1,4 +1,5 @@
 FROM node:18
+ARG PUBLIC_URL=/
 
 COPY package.json /app/package.json
 COPY package-lock.json /app/package-lock.json
@@ -7,6 +8,7 @@ RUN npm ci
 
 COPY . /app
 
+ENV PUBLIC_URL=$PUBLIC_URL
 RUN npm run build
 
 FROM nginx:stable
